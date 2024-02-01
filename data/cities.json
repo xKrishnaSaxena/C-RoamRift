@@ -1,0 +1,84 @@
+{
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "La Puebla de Valverde",
+      "country": "Spain",
+      "date": "2024-01-08T21:13:56.170Z",
+      "notes": "we",
+      "position": {
+        "lat": "40.29628651711716",
+        "lng": "-0.9448242187500001"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Kanpur",
+      "country": "India",
+      "date": "2024-01-19T09:57:27.104Z",
+      "notes": "mc",
+      "position": {
+        "lat": "26.470573022375085",
+        "lng": "80.35400390625001"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Guna",
+      "country": "India",
+      "date": "2024-01-19T09:59:11.699Z",
+      "notes": "kai",
+      "position": {
+        "lat": "24.617057340809524",
+        "lng": "77.29980468750001"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Lucknow",
+      "country": "India",
+      "date": "2024-02-01T06:05:23.949Z",
+      "notes": "good place",
+      "position": {
+        "lat": "26.843677401113002",
+        "lng": "81.05712890625001"
+      },
+      "id": 98443201
+    }
+  ]
+}

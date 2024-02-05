@@ -22,7 +22,7 @@ function Map() {
     getPosition,
   } = useGeolocation();
 
-  const [mapPosition, setMapPosition] = useState([40, 0]);
+  const [mapPosition, setMapPosition] = useState([26, 80]);
 
   const [maplat, maplng] = useUrlPosition();
 

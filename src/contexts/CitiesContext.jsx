@@ -1,11 +1,38 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-const URL = "http://localhost:9000";
+// const URL = "http://localhost:9000";
 
 const CitiesContext = createContext();
 
+const cities = [
+  {
+    cityName: "Lisbon",
+    country: "Portugal",
+    emoji: "🇵🇹",
+    date: "2027-10-31T15:59:59.138Z",
+    notes: "My favorite city so far!",
+    position: {
+      lat: 38.727881642324164,
+      lng: -9.140900099907554,
+    },
+    id: 73930385,
+  },
+  {
+    cityName: "Madrid",
+    country: "Spain",
+    emoji: "🇪🇸",
+    date: "2027-07-15T08:22:53.976Z",
+    notes: "",
+    position: {
+      lat: 40.46635901755316,
+      lng: -3.7133789062500004,
+    },
+    id: 17806751,
+  },
+];
+
 const initialState = {
-  cities: [],
+  cities: cities,
   isLoading: false,
   currentCity: {},
   error: "",
@@ -56,32 +83,41 @@ function CitiesProvider({ children }) {
     initialState
   );
 
-  useEffect(function () {
-    async function fetchCities() {
-      dispatch({ type: "loading" });
-      try {
-        const res = await fetch(`${URL}/cities`);
-        const data = await res.json();
-
-        dispatch({ type: "cities/loaded", payload: data });
-      } catch {
-        dispatch({
-          type: "rejected",
-          payload: "There was an error loading the cities data !!!",
-        });
+  useEffect(
+    function () {
+      async function fetchCities() {
+        dispatch({ type: "loading" });
+        try {
+          dispatch({ type: "cities/loaded", payload: cities });
+        } catch {
+          dispatch({
+            type: "rejected",
+            payload: "There was an error loading the cities data !!!",
+          });
+        }
       }
-    }
-    fetchCities();
-  }, []);
+      fetchCities();
+    },
+    [cities]
+  );
+  function generateUniqueId() {
+    const timestamp = new Date().getTime();
+
+    return `${timestamp}`;
+  }
 
   async function getCity(id) {
-    if (Number(id) === currentCity.id) return; //to ensure that if we load the same city again then it will instantaneous as it will not fetch the data from the api again
+    // if (Number(id) === currentCity.id) return; //to ensure that if we load the same city again then it will instantaneous as it will not fetch the data from the api again
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch {
+      id = Number(id);
+      const data = cities.find((city) => city.id === id);
+      if (data) {
+        dispatch({ type: "city/loaded", payload: data });
+      } else {
+        dispatch({ type: "rejected", payload: `City with ID ${id} not found` });
+      }
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was an error loading the city data !!!",
@@ -91,14 +127,9 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-      dispatch({ type: "city/created", payload: data });
-    } catch {
+      newCity.id = generateUniqueId();
+      dispatch({ type: "city/created", payload: newCity });
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was an error adding the city data !!!",
@@ -109,12 +140,12 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${URL}/cities/${id}`, {
-        method: "DELETE",
-      });
+      id = Number(id);
+      const updatedCities = cities.filter((city) => city.id !== id);
+      console.log(updatedCities);
 
       dispatch({ type: "city/deleted", payload: id });
-    } catch {
+    } catch (error) {
       dispatch({
         type: "rejected",
         payload: "There was an error removing the city data !!!",

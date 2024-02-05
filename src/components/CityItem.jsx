@@ -13,6 +13,7 @@ const formatDate = (date) =>
 function CityItem({ city }) {
   const { currentCity, deleteCity } = useCities();
   const { cityName, date, id, position } = city;
+
   function handleDelete(e) {
     e.preventDefault();
     deleteCity(id);

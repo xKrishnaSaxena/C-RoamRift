@@ -6,28 +6,28 @@ const CitiesContext = createContext();
 
 const cities = [
   {
-    cityName: "Lisbon",
-    country: "Portugal",
-    emoji: "🇵🇹",
+    cityName: "Lucknow",
+    country: "India",
+    emoji: "INDIA FLAG",
     date: "2027-10-31T15:59:59.138Z",
     notes: "My favorite city so far!",
     position: {
-      lat: 38.727881642324164,
-      lng: -9.140900099907554,
+      lat: 26.755420897359123,
+      lng: 80.96923828125001,
     },
-    id: 73930385,
+    id: 1,
   },
   {
-    cityName: "Madrid",
-    country: "Spain",
-    emoji: "🇪🇸",
+    cityName: "Raghogarh",
+    country: "India",
+    emoji: "INDIAN FLAG",
     date: "2027-07-15T08:22:53.976Z",
-    notes: "",
+    notes: "My College",
     position: {
-      lat: 40.46635901755316,
-      lng: -3.7133789062500004,
+      lat: 24.435350591995437,
+      lng: 77.16316223144533,
     },
-    id: 17806751,
+    id: 2,
   },
 ];
 
@@ -142,7 +142,6 @@ function CitiesProvider({ children }) {
     try {
       id = Number(id);
       const updatedCities = cities.filter((city) => city.id !== id);
-      console.log(updatedCities);
 
       dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
